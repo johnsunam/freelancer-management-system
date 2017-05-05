@@ -1,5 +1,5 @@
 (function(){
-    angular.module('employees',['ui.router','ui.bootstrap']).
+    angular.module('employees',['ui.router','ui.bootstrap','app.data']).
     config(Config);
     Config.$inject=['$stateProvider'];
 

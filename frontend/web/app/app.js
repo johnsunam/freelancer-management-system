@@ -1,4 +1,4 @@
-var app=angular.module('app',['ui.bootstrap','ui.router','employees']);
+var app=angular.module('app',['ui.bootstrap','ui.router','employees','app.data']);
 
 
 app.config(function($stateProvider,$urlRouterProvider,$httpProvider){

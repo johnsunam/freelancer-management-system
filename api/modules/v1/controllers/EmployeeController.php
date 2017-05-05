@@ -8,10 +8,19 @@
 
 namespace api\modules\v1\controllers;
 
-
+use Yii;
 use yii\rest\ActiveController;
 
 class EmployeeController extends ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Employee';
+
+    public function actionEmployee(){
+        
+         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+         $employee=Yii::$app->getRequest()->getBodyParams();
+      //   print_r($employee);
+      var_dump($employee);
+         exit($employee['username']);
+    }
 }
