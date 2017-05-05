@@ -18,6 +18,13 @@ class EmployeeController extends ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Employee';
 
+    public function actions()
+    {
+        $actions=parent::actions();
+        unset($actions['create'],$actions['update'],$actions['delete'],$actions['view'],$actions['index']);
+        return $actions;
+    }
+
     public function actionCreateEmployee()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

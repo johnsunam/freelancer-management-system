@@ -8,11 +8,12 @@ class LoginController extends ActiveController{
    public $modelClass='common\models\User';
 
     public function behaviors()
-{
-    
+    {
 
-}
-     public function actions(){
+    }
+
+     public function actions()
+     {
          $actions=parent::actions();
          unset($actions['create'],$actions['update'],$actions['delete'],$actions['view'],$actions['index']);
          //$actions['index']['prepareDataProvider'] = [$this, 'signin'];
