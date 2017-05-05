@@ -31,20 +31,24 @@ class EmployeeController extends ActiveController
 
         $employee = Yii::$app->getRequest()->getBodyParams();
         $email = $employee['email'];
+        $name = $employee['name'];
         $foundEmail = User::find()->where(['email' => $email])->all();
+        $foundUsername = User::find()->where(['username'=>$name])->all();
 
-        if ($foundEmail != null) {
+        if ($foundUsername != null){
+            return 'User name already exists';
+        } elseif ($foundEmail != null) {
             return 'Email already exists';
-        } else{
+        }else{
             $user = new User();
-            $user->username = $employee['name'];
+            $user->username = $name;
             $user->email = $email;
             $user->setPassword('freelancer');
             $user->generateAuthKey();
             if ($user->save()) {
                 $myEmp = new Employee();
                 $myEmp->user_id = $user->id;
-                $myEmp->name = $employee['name'];
+                $myEmp->name = $name;
                 $myEmp->email = $email;
                 $myEmp->mobile_number = $employee['mobile'];
                 $myEmp->address = $employee['address'];
