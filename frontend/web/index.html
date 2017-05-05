@@ -1,0 +1,64 @@
+<html>
+<head>
+  <!-- CSS -->
+  <title>Freelancer</title>
+  <!-- JS -->
+  
+  <script src="vendor/bower/angular-route"></script>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css"
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+
+  <!--Node Packages-->
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="node_modules/angular-resource/angular-resource.js"></script>
+  <script src="node_modules/angular-material/angular-material.js"></script>
+  <script src="node_modules/angular-aria/angular-aria.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.js"></script>
+  <script src="node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
+
+  <!--Alert-->
+  <script type="text/javascript" src="app/utilities/main.js"></script>
+  <script type="text/javascript" src="app/utilities/alert.js"></script>
+  <!-- Main -->
+  <script src="app/app.js"></script>
+  <!--Account-->
+  <script src="app/Account/LoginCtrl.js"></script>
+  <script src="app/Home/headerCtrl.js"></script>
+  <script type="text/javascript" src="app/Account/AuthFactory.js"></script>
+  
+  <!--Employee-->
+
+  <script src="app/Employees/employee.js"></script>
+  <script src="app/Employees/employeeCtrl.js"></script>
+  
+  
+  
+  
+</head>
+<body ng-app="app" class="">
+  <div id="wrapper" class="row col-md-12">
+    <div class="col-md-3">
+       <nav ui-view="leftmenu" class="navbar-default navbar-static-side ng-scope" role="navigation"></nav>
+    
+    </div>
+     
+    <div class="col-md-9">
+       <div ui-view="header" class="row border-bottom"></div>
+      <div  ui-view="content" class="row  border-bottom white-bg dashboard-header"></div>
+    </div>
+     
+    <div ui-view="login"></div>
+    
+  </div>
+  
+  
+  
+ 
+</body>
+
+</html>
