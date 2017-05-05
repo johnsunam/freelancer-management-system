@@ -12,6 +12,15 @@
         }).then(function(result){
             console.log(result);
         })
-        }
+    }
+    function getData(url){
+        $http({
+            method:'GET',
+            url:url
+        }).then(function(result){
+            console.log(result);
+        })
+
+    }
     }
 }())

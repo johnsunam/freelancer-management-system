@@ -11,7 +11,13 @@
                 'content@':{
                     templateUrl:'partials/Employees/employee.html',
                     controller:'EmployeeCtrl',
-                    controllerAs:'emc'
+                    controllerAs:'emc',
+                    resolve:{
+                        getEmployee:function(dataService){
+                            var emp=dataService.getData('http://localhost/advanced/api/web/index.php/v1/employees');
+                            console.log(emp)
+                        }
+                    }
                 }
             }
         })

@@ -19,7 +19,6 @@ class EmployeeController extends ActiveController
         
          \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
          $employee=Yii::$app->getRequest()->getBodyParams();
-      //   print_r($employee);
       var_dump($employee);
          exit($employee['username']);
     }
