@@ -8,19 +8,49 @@
 
 namespace api\modules\v1\controllers;
 
+use api\modules\v1\models\Employee;
+use common\models\User;
 use Yii;
 use yii\rest\ActiveController;
+use yii\web\Response;
 
 class EmployeeController extends ActiveController
 {
     public $modelClass = 'api\modules\v1\models\Employee';
 
-    public function actionEmployee(){
-        
-         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-         $employee=Yii::$app->getRequest()->getBodyParams();
-      //   print_r($employee);
-      var_dump($employee);
-         exit($employee['username']);
+    public function actionCreateEmployee()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $employee = Yii::$app->getRequest()->getBodyParams();
+        $email = $employee['email'];
+        $foundEmail = User::find()->where(['email' => $email])->all();
+
+        if ($foundEmail != null) {
+            return 'Email already exists';
+        } else{
+            $user = new User();
+            $user->username = $employee['name'];
+            $user->email = $email;
+            $user->setPassword('freelancer');
+            $user->generateAuthKey();
+            if ($user->save()) {
+                $myEmp = new Employee();
+                $myEmp->user_id = $user->id;
+                $myEmp->name = $employee['name'];
+                $myEmp->email = $email;
+                $myEmp->mobile_number = $employee['mobile'];
+                $myEmp->address = $employee['address'];
+                $myEmp->category_id = $employee['category'];
+                if ($myEmp->save()) {
+                    return true;
+                } else {
+                    return 'employee couldn\'t be saved. Try again later';
+                }
+            } else {
+                return 'user couldn\'t be saved. Try again later';
+            }
+        }
+
     }
 }
