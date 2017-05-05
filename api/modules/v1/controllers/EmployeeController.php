@@ -21,7 +21,7 @@ class EmployeeController extends ActiveController
     public function actions()
     {
         $actions=parent::actions();
-        unset($actions['create'],$actions['update'],$actions['delete'],$actions['view'],$actions['index']);
+        unset($actions['create'],$actions['update'],$actions['delete'],$actions['view']);
         return $actions;
     }
 
