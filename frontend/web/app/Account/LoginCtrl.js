@@ -22,3 +22,26 @@ function LoginCtrl($state,authenticationsvc,$q){
    }
 }
 }());
+
+app.run(['$rootScope', '$state', '$location', 'authenticationsvc',
+function($rootScope,$state,$location,authenticationsvc){
+
+   // console.log($rootScope)
+    $rootScope.$on('$locationChangeStart', function (event, nextRoute) {
+        console.log(nextRoute);
+        console.log('starting location change',authenticationsvc.getUserInfo());
+        if(!authenticationsvc.getUserInfo()){
+        console.log($location.path());
+        $state.go('login');
+    }
+    });
+    $rootScope.$on('$stateChangeStart', function (event, nextRoute) {
+        console.log(nextRoute);
+        console.log('starting location change',authenticationsvc.getUserInfo());
+        if(!authenticationsvc.getUserInfo()){
+        console.log($location.path());
+        $location.path('/');
+    }
+    });
+   
+}])

@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
-                <div class="row">
+                <div class="row" style="margin:5px;">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>Add Employee <small></small></h5>
@@ -40,27 +40,226 @@
                                 <i class="fa fa-times"></i>
                             </a>
                         </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="row">
-                            
+                    </div>     
                                 <form role="form" ng-submit="emc.employeeDetail();">
-                                    <div class="form-group"><label>Employee Name</label><input type="text" ng-model="emc.employee.name" placeholder="Employee Name" class="form-control"></div>
-                                    <div class="form-group"><label>Employee Address</label><input type="text" ng-model="emc.employee.address" placeholder="Employee Address" class="form-control"></div>
-                                    <div class="form-group"><label>Mobile Number</label><input type="number" placeholder="Mobile Number" ng-model="emc.employee.mobile" class="form-control"></div>
-                                    <select class="form-control m-b" ng-model="emc.employee.category" name="account">
-                                        <option value="">Choose Category</option>
-                                        <option value="1">Developer</option>
-                                        <option value="2">Designer</option>
-                                        <option value="3">Marketing</option>
-                                        <option value="4">Content writer</option>
-                                    </select>
-                                    <div class="form-group"><label>Email</label> <input type="email" ng-model="emc.employee.email" placeholder="Enter email" class="form-control"></div>
-                                    <button type="submit" class="btn btn-w-m btn-primary">Add</button>
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                        <select class="form-control m-b" ng-model="emc.employee.reg_id" name="account">
+                                        <option value="">Choose User</option>
+                                        <option ng-repeat="employ in emc.unregistered" value={{employ.id}}>{{employ.username}}</option>
+                                        </select>
+                                        </div >
+                                        <div class="col-md-4 form-group">
+                                            <label>Attendence no</label>
+                                        <input type="text" class="form-control" ng-model="emc.employee.reg_id" disabled/>
+                                         </div>
+
+                                    </div>
+                                    
+                                    <h3>Official Details</h3>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" placeholder="first name" ng-model="emc.employee.first_name"/>
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label>Middle Name</label>
+                                            <input type="text" class="form-control" placeholder="middle name" ng-model="emc.emplpyee.middle_name"/>
+                                        </div>
+                                        <div class="col-md-4 form-group">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" placeholder="last name" ng-model="emc.emplpyee.last_name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label>Branch</label>
+                                        <select class="form-control m-b" ng-model="emc.employee.branch_id" name="branch">
+                                        <option value="">Choose Branch</option>
+                                        <option ng-repeat="branch in emc.branches" value={{branch.id}}>{{branch.name}}</option>
+                                        </select> 
+                                        </div>
+                                         <div class="col-md-4 form-group">
+                                            <label>Department</label>
+                                         <select class="form-control m-b" ng-model="emc.employee.department" name="department">
+                                        <option value="">Choose Department</option>
+                                        <option ng-repeat="department in emc.departments" value={{department.id}}>{{department.name}}</option>
+                                        </select>  </div>
+                                         <div class="col-md-4 form-group">
+                                            <label>Sub Department</label>
+                                        <select class="form-control m-b" ng-model="emc.employee.sub_department" name="sub_department">
+                                        <option value="">Choose Department</option>
+                                        <option ng-repeat="sub_department in emc.sub_departments" value={{sub_department.id}}>{{sub_department.name}}</option>
+                                        </select>   </div>
+                                    </div>
+                                   <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label>Designation</label>
+                                        <select class="form-control m-b" ng-model="emc.employee.designation" name="designation">
+                                        <option value="">Choose Designation</option>
+                                        <option ng-repeat="designation in emc.designations" value={{designation.id}}>{{designation.name}}</option>
+                                        </select> 
+                                        </div>
+                                         <div class="col-md-4 form-group">
+                                            <label>Grade</label>
+                                         <select class="form-control m-b" ng-model="emc.employee.grade" name="grade">
+                                        <option value="">Choose Grade</option>
+                                        <option ng-repeat="garde in emc.grades" value={{grade.id}}>{{grade.name}}</option>
+                                        </select>  </div>
+                                         <div class="col-md-4 form-group">
+                                            <label>Mode</label>
+                                        <select class="form-control m-b" ng-model="emc.employee.mode" name="mode">
+                                        <option value="">Choose Mode</option>
+                                        <option ng-repeat="mode in emc.modes" value={{grade.id}}>{{grade.name}}</option>
+                                        </select> 
+                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 form-group">
+                                            <label>Status</label>
+                                        <select class="form-control m-b" ng-model="emc.employee.status" name="status">
+                                        <option value="">Choose Status</option>
+                                        <option ng-repeat="status in emc.statuses" value={{status.id}}>{{status.name}}</option>
+                                        </select> 
+                                        </div>
+                                         <div class="col-md-4 form-group">
+                                            <label>Type</label>
+                                         <select class="form-control m-b" ng-model="emc.employee.type" name="type">
+                                        <option value="">Choose type</option>
+                                        <option ng-repeat="type in emc.types" value={{type.id}}>{{type.name}}</option>
+                                        </select>  
+                                        </div>
+                                         
+                                    </div>
+                                   <div class="row">
+                                       <div class="col-md-4">
+                                         <label>
+                                        Joined Date in AD
+                                    </label>
+                                    <input type="date" class="form-control" placeholder="Date in AD" ng-model="emc.employee.joined_e_date"/>
+                                       </div>
+                                       <div class="col-md-4">
+                                         <label>
+                                        Joined Date in BS
+                                    </label>
+                                    <input type="date" class="form-control" placeholder="Date in BS" ng-model="emc.employee.joined_n_date"/>
+                                       </div>
+                                   </div>
+                                   <br>
+                                   <br>
+                                   <h3>Personal Detail</h3>
+                                   <hr>
+                                   <div class="row">
+                                       <div class="col-md-4">
+                                         <label>
+                                        Date of Birth in AD
+                                    </label>
+                                    <input type="date" class="form-control" placeholder="Date in AD" ng-model="emc.employee.joined_e_date"/>
+                                       </div>
+                                       <div class="col-md-4">
+                                         <label>
+                                        Date of Birth in BS
+                                    </label>
+                                    <input type="date" class="form-control" placeholder="Date in BS" ng-model="emc.employee.joined_n_date"/>
+                                       </div>
+                                       <div class="col-md-4 form-group">
+                                            <label>Gender</label>
+                                        <select class="form-control m-b" ng-model="emc.employee.gender" name="gender">
+                                        <option value="">Choose Status</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                       
+                                        </select> 
+                                        </div>
+                                   </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                         <label>
+                                        Phone
+                                    </label>
+                                    <input type="number" class="form-control" placeholder="Phone Number" ng-model="emc.employee.mobile_number"/>
+                                       </div>
+                                       <div class="col-md-4">
+                                         <label>
+                                       Email
+                                    </label>
+                                    <input type="email" class="form-control" placeholder="email address" ng-model="emc.employee.email"/>
+                                       </div>
+                                       <div class="col-md-4">
+                                         <label>
+                                        Citizenship No.
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Citizenship No" ng-model="emc.employee.citizen_no"/>
+                                       </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h3>Permanent address</h3>
+                                        </div>
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <h3>Temporary address</h3>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                 <input type="text" class="form-control" placeholder="country" ng-model="emc.employee.p_country"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Zone</label>
+                                                 <input type="text" class="form-control" placeholder="zone" ng-model="emc.employee.p_zone"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>District</label>
+                                                 <input type="text" class="form-control" placeholder="district" ng-model="emc.employee.p_district"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                 <input type="text" class="form-control" placeholder="address" ng-model="emc.employee.p_address"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Street</label>
+                                                 <input type="text" class="form-control" placeholder="street" ng-model="emc.employee.p_street"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-4 col-md-offset-4">
+                                           
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                 <input type="text" class="form-control" placeholder="country" ng-model="emc.employee.t_country"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Zone</label>
+                                                 <input type="text" class="form-control" placeholder="zone" ng-model="emc.employee.t_zone"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>District</label>
+                                                 <input type="text" class="form-control" placeholder="district" ng-model="emc.employee.t_district"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                 <input type="text" class="form-control" placeholder="address" ng-model="emc.employee.t_address"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Street</label>
+                                                 <input type="text" class="form-control" placeholder="street" ng-model="emc.employee.t_street"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <button type="submit" class="btn btn-w-m btn-primary">Add</button>
                                 </form>
-                            </div>
                             
-                        </div>
+                            
+                       
                     </div>
                     
                 </div>

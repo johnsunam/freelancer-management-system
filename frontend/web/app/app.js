@@ -1,4 +1,4 @@
-var app=angular.module('app',['ui.bootstrap','ui.router','employees','app.data']);
+var app=angular.module('app',['ui.bootstrap','ui.router','employees','app.data','category','project','entities']);
 
 
 app.config(function($stateProvider,$urlRouterProvider,$httpProvider){
@@ -41,6 +41,22 @@ app.config(function($stateProvider,$urlRouterProvider,$httpProvider){
         views:{
             'content@':{
                 templateUrl:'partials/Employees/employeeList.html',
+                controller:'EmployeeListCtrl',
+                controllerAs:'elc',
+                resolve:{
+                    employees:function(dataService){
+                        return dataService.getData('http://localhost/advanced/api/web/index.php/v1/employees').then(function(result){
+                                return result;
+                        });
+                   
+                    },
+                    categories:function(dataService){
+                        return dataService.getData('http://localhost/advanced/api/web/index.php/v1/categories').then(function(result){
+                            return result;
+                        })
+                    }
+                   
+               }
 
             }
         }

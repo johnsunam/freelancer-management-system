@@ -4,9 +4,9 @@ function($http,$q,$window){
     //user login api call
 
     function login(username,password){
+        
         console.log(username,password);
         var deferred=$q.defer();
-
         $http({
             method:'POST',
             url:'http://localhost/advanced/api/web/index.php/v1/login/signin',
@@ -26,8 +26,23 @@ function($http,$q,$window){
         return deferred.promise;
     }
 
+    function logout(){
+       $window.localStorage.userToken=undefined;
+    }
+
+ function getUserInfo(){
+     console.log($window.localStorage.userToken);
+     if($window.localStorage.userToken){
+        return true;
+     }
+     else{
+         return false;
+     }
+ }
     
     return {
-        login:login
+        login:login,
+        getUserInfo:getUserInfo,
+        logout:logout
     }
 }])

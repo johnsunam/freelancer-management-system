@@ -8,11 +8,12 @@ class LoginController extends ActiveController{
    public $modelClass='common\models\User';
 
     public function behaviors()
-{
-    
+    {
 
-}
-     public function actions(){
+    }
+
+     public function actions()
+     {
          $actions=parent::actions();
          unset($actions['create'],$actions['update'],$actions['delete'],$actions['view'],$actions['index']);
          //$actions['index']['prepareDataProvider'] = [$this, 'signin'];
@@ -31,6 +32,12 @@ class LoginController extends ActiveController{
            $model->validate();
            return $model;
        }
+    }
+    public function actionLogout(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $this->asJson(Yii::$app->user->identity);
+      
+        //  Yii::$app->user->logout();
     }
     
 
