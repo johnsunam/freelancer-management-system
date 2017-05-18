@@ -46,7 +46,7 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['v1/project', 'v1/employee','v1/login','v1/category','v1/branch','v1/department','v1/subdepartment','v1/designation','v1/grade','v1/mode','v1/status','v1/type','v1/registeruser','v1/userattendence'],  // our country api rule,
+                    'controller' => ['v1/project', 'v1/employee','v1/login','v1/category','v1/branch','v1/department','v1/subdepartment','v1/designation','v1/grade','v1/mode','v1/status','v1/type','v1/registeruser','v1/userattendence', 'v1/country'],  // our country api rule,
                     
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
