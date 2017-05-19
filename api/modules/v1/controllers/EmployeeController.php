@@ -21,8 +21,8 @@ class EmployeeController extends ActiveController
 
     public function actions()
     {
-        $actions=parent::actions();
-        unset($actions['create'],$actions['update'],$actions['delete'],$actions['view']);
+        $actions = parent::actions();
+        unset($actions['create'], $actions['update'], $actions['delete'], $actions['view']);
         return $actions;
     }
 
@@ -32,42 +32,69 @@ class EmployeeController extends ActiveController
 
         $employee = Yii::$app->getRequest()->getBodyParams();
         $email = $employee['email'];
-        $name = $employee['name'];
+        $name = $employee['username'];
         $foundEmail = User::find()->where(['email' => $email])->all();
 
-        if ($foundEmail != null) {
+        if ($foundEmail == null) {
 
-        $foundUsername = User::find()->where(['username'=>$name])->all();
+            $foundUsername = User::find()->where(['username' => $name])->all();
 
-        if ($foundUsername != null){
-            return 'User name already exists';
-        } elseif ($foundEmail != null) {
-            return 'Email already exists';
-        }else{
-            $user = new User();
-            $user->username = $name;
-            $user->email = $email;
-            $user->setPassword('freelancer');
-            $user->generateAuthKey();
-            if ($user->save()) {
-                $myEmp = new Employee();
-                $myEmp->user_id = $user->id;
-                $myEmp->name = $name;
-                $myEmp->email = $email;
-                $myEmp->mobile_number = $employee['mobile'];
-                $myEmp->address = $employee['address'];
-                $myEmp->category_id = $employee['category'];
-                if ($myEmp->save()) {
-                    return true;
-                } else {
-                    return 'employee couldn\'t be saved. Try again later';
-                }
+            if ($foundUsername != null) {
+                return 'User name already exists';
+            } elseif ($foundEmail != null) {
+                return 'Email already exists';
             } else {
-                return 'user couldn\'t be saved. Try again later';
+                $user = new User();
+                $user->username = $name;
+                $user->email = $email;
+                $user->setPassword('freelancer');
+                $user->generateAuthKey();
+                if ($user->save()) {
+                    $myEmp = new Employee();
+                    $myEmp->user_id = $user->id;
+                    $myEmp->username = $name;
+                    $myEmp->email = $email;
+                    $myEmp->reg_id = $employee['reg_id'];
+                    $myEmp->first_name = $employee['first_name'];
+                    $myEmp->middle_name = $employee['middle_name'];
+                    $myEmp->last_name = $employee['last_name'];
+                    $myEmp->joined_e_date = $employee['joined_e_date'];
+                    $myEmp->joined_n_date = $employee['joined_n_date'];
+                    $myEmp->dob_e = $employee['dob_e'];
+                    $myEmp->dob_n = $employee['dob_n'];
+                    $myEmp->citizenship_no = $employee['citizenship_no'];
+                    $myEmp->gender = $employee['gender'];
+                    $myEmp->p_country = $employee['p_country'];
+                    $myEmp->t_country = $employee['t_country'];
+                    $myEmp->p_zone = $employee['p_zone'];
+                    $myEmp->t_zone = $employee['t_zone'];
+                    $myEmp->p_district = $employee['p_district'];
+                    $myEmp->t_district = $employee['t_district'];
+                    $myEmp->p_address = $employee['p_address'];
+                    $myEmp->t_address = $employee['t_address'];
+                    $myEmp->p_street = $employee['p_street'];
+                    $myEmp->t_street = $employee['t_street'];
+                    $myEmp->branch_id = $employee['branch_id'];
+                    $myEmp->mode_id = $employee['mode_id'];
+                    $myEmp->department_id = $employee['department_id'];
+                    $myEmp->sub_department_id = $employee['sub_department_id'];
+                    $myEmp->designation_id = $employee['designation_id'];
+                    $myEmp->grade_id = $employee['grade_id'];
+                    $myEmp->status_id = $employee['status_id'];
+                    $myEmp->type_id = $employee['type_id'];
+                    $myEmp->mobile_number = $employee['mobile_number'];
+                    if ($myEmp->save()) {
+                        return true;
+                    } else {
+                        return $myEmp->errors;
+                    }
+                } else {
+                    return 'user couldn\'t be saved. Try again later';
+                }
+
             }
+        }else{
+            return 'duplicate email';
         }
-
-
     }
-}
 }
