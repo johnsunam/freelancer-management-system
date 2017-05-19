@@ -31,11 +31,13 @@ class EmployeeController extends ActiveController
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $employee = Yii::$app->getRequest()->getBodyParams();
+        
         $email = $employee['email'];
         $name = $employee['username'];
+        //return $name;
         $foundEmail = User::find()->where(['email' => $email])->all();
 
-        if ($foundEmail == null) {
+        if ($foundEmail == null && $email != null && $name != null) {
 
             $foundUsername = User::find()->where(['username' => $name])->all();
 
@@ -49,6 +51,7 @@ class EmployeeController extends ActiveController
                 $user->email = $email;
                 $user->setPassword('freelancer');
                 $user->generateAuthKey();
+                
                 if ($user->save()) {
                     $myEmp = new Employee();
                     $myEmp->user_id = $user->id;
@@ -89,12 +92,12 @@ class EmployeeController extends ActiveController
                         return $myEmp->errors;
                     }
                 } else {
-                    return 'user couldn\'t be saved. Try again later';
+                    return $user->errors;
                 }
 
             }
         }else{
-            return 'duplicate email';
+            return 'duplicate email or no email no username';
         }
     }
 }
