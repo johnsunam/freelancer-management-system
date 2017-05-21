@@ -44,13 +44,17 @@ return [
             //'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+//                'v1/branches/<name:\w+>' => 'v1/branch/check-duplicity',
+                'v1/<controller:[\w-]+>es/<name:\w+>' => 'v1/<controller>/check-duplicity',
+                'v1/<controller:[\w-]+>s/<name:\w+>' => 'v1/<controller>/check-duplicity',
+//                'v1/<controller:[\w-]+>es/<name:[a-z]+>' => 'v1/<controller>/check-duplicity',
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => ['v1/project', 'v1/employee','v1/login','v1/category','v1/branch','v1/department','v1/subdepartment','v1/designation','v1/grade','v1/mode','v1/status','v1/type','v1/registeruser','v1/userattendence', 'v1/country'],  // our country api rule,
                     
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
-                    ]
+                    ],
                 ],
             ],
         ]
